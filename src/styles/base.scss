@@ -1,0 +1,37 @@
+
+/* ========================
+main.scss
+======================== */
+
+
+/* ---------------------------------
+imports
+--------------------------------- */
+
+@import './_partials/_logic';
+@import './_partials/_vars';
+@import './_partials/_colors';
+@import './_partials/_typography';
+@import './_partials/_anims';
+@import './_partials/_fx';
+// vendor
+@import '~normalize.css/normalize.css';
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,600');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+:root { @extend %styleInit; }
+
+
+body {
+  background-color: #F8F8F8;
+  padding-top: 70px;
+  font-family: $plexSans;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: $font;
+}
+
+
+// main container in 'static' pages
+.mainContainer { height: calc(100vh - 70px); }

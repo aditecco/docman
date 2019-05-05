@@ -1,0 +1,20 @@
+
+/* ========================
+colors.scss
+======================== */
+
+
+@import '~flat-ui-colors-sass/_flat-colors';
+
+
+$accent: #FFC107;
+$accentContrast: #D19D00;
+$secondaryAccent: $flat-blue-4;
+$lightBackground: $flat-gray-1;
+$darkBackground: $flat-blue-4;
+$separator: #0000000a;
+
+$font: #444;
+$fontLight: rgba($font, .4);
+$transparent: rgba(255,255,255, 0);
+$error: rgba($flat-red-1, .8);

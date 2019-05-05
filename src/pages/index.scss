@@ -1,0 +1,131 @@
+
+/* ========================
+index
+======================== */
+
+/* ---------------------------------
+imports
+--------------------------------- */
+
+@import '../styles/_partials/_logic';
+@import '../styles/_partials/_vars';
+@import '../styles/_partials/_colors';
+@import '../styles/_partials/_typography';
+@import '../styles/_partials/_anims';
+@import '../styles/_partials/_fx';
+
+
+.header {
+  padding: 80px 20px;
+  border-bottom: 1px solid $flat-gray-1;
+  // we compensate for the missing navbar
+  margin-top: -70px;
+  background-color: white;
+
+  .logo {
+    display: block;
+    width: 130px;
+    margin: 0 auto 40px;
+  }
+
+  .heading {
+    > * {
+      margin: 0;
+      font-weight: 300;
+      text-align: center;
+    }
+  
+    &Title {
+      font-size: 3.3rem;
+      margin-bottom: 10px;
+    }
+  
+    &Subtitle {
+      font-size: 2.2rem;
+      color: $fontLight;
+    }
+  }
+
+}
+
+
+// .contentFilter {
+//   padding: 40px 0;
+//   border-bottom: 1px solid $separator;
+
+//   .listFilter {
+//     @include container(580px);
+//     display: flex;
+//     list-style: none;
+//     padding: 0;
+  
+//     li + li { margin-left: 20px; }
+  
+//     &Item {
+//       padding: 8px 16px;
+//       border-radius: 20px;
+//       background-color: white;
+//       box-shadow: 0 2px 10px #0000001a;
+  
+//       a { @extend %resetAnchors; }
+//     }
+//   }
+// }
+
+
+.contentIndex {
+  @include container(1400px);
+  padding: 40px 10% 40px;
+
+  ol {
+    @include box(0,0,true);
+    font-size: 2rem;
+    color: $fontLight;
+    column-count: 2;
+    @media (max-width: $MD) {
+      padding: $padding;
+      column-count: initial;
+      list-style-type: decimal-leading-zero;
+    }
+  }
+  
+  .contentIndexItem {
+    display: inline-block;
+    margin-bottom: 30px;
+    font-size: 2.8rem;
+    font-weight: lighter;
+    @media (max-width: $MD) {
+      display: list-item;
+      font-size: 2rem;
+    }
+
+    &:last-child {
+      .contentIndexItemTitle::after { display: none; }
+    }
+  
+    &Anchor {
+      @extend %resetAnchors;
+      display: block;
+    }
+  
+    .contentIndexItemTitle {
+      @include normalizeText();
+      font-size: inherit;
+      font-weight: 300;
+      border-bottom: 2px solid $accent;
+      color: $font;
+      @media (max-width: $MD) {
+        display: inline-block;
+      }
+
+      &::after {
+        // content: '\00b7';
+        content: ',';
+        font-size: 30px;
+        font-weight: 300;
+        margin-left: 6px;
+        color: rgba($fontLight, .1);
+      }
+    }
+  }
+}

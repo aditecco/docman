@@ -1,0 +1,474 @@
+
+/* ========================
+Doc template
+======================== */
+
+/* ---------------------------------
+imports
+--------------------------------- */
+
+@import '../../styles/_partials/_logic';
+@import '../../styles/_partials/_vars';
+@import '../../styles/_partials/_colors';
+@import '../../styles/_partials/_typography';
+@import '../../styles/_partials/_anims';
+@import '../../styles/_partials/_fx';
+
+
+/* ---------------------------------
+container
+--------------------------------- */
+
+.DocContent {}
+
+
+/* ---------------------------------
+sidebar
+--------------------------------- */
+
+.DocSidebar {
+  position: fixed;
+  width: 280px;
+  // we subtract the height of the header
+  height: calc(100vh - 70px);
+  padding: 20px 0 40px;
+  border-right: 1px solid $separator;
+  background-color: rgba(#ECECEC, .4);
+
+  &Search {
+    position: relative;
+    padding: 10px $padding;
+    margin: 16px 0;
+
+    > * {
+      border: 0;
+      background: none;
+      transition:
+        border .3s,
+        background-color .3s,
+        outline .3s
+      ;
+    }
+
+    // label {
+    //   font-size: 1.2rem;
+    //   text-transform: uppercase;
+    //   font-weight: 600;
+    // }
+
+    input {
+      width: 100%;
+      padding: 8px 40px 8px 6px;
+      border: 2px solid rgba(white, .1);
+      border-radius: $radius;
+      box-shadow:
+        inset 0 0 8px rgba(black, .15),
+        // 0 0 0 1px rgba(white, .2)
+      ;
+      background-color: white;
+      font-size: 1.4rem;
+      caret-color: $secondaryAccent;
+
+      &:focus {
+        outline: none;
+        border: 2px solid $secondaryAccent;
+      }
+    }
+
+    .DocSidebarSearchSubmit {
+      position: absolute;
+      right: 20px;
+      bottom: 12px;
+      height: 32px;
+      border-top-right-radius: $radius;
+      border-bottom-right-radius: $radius;
+      cursor: pointer;
+
+      &:focus,
+      &:hover {
+        outline: none;
+        background-color: $secondaryAccent;
+        box-shadow: -4px 0 4px rgba(black, .1);
+
+        .material-icons { color: whitesmoke; }
+      }
+
+      .material-icons {
+        font-size: 1.2em;
+        color: $secondaryAccent;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &Toc {
+    h6 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(#BDC3C7, .3);
+      margin: 0;
+    }
+  }
+
+  &Nav {
+    // 2 times padding, + 2 times the rem size
+    // $footerHeight: (20px * 2) + (20px * 2);
+    // height: calc(100% - #{$footerHeight});
+    height: calc(100% - 170px);
+    padding: 20px 0;
+    font-size: $small;
+    overflow-y: auto;
+
+    // targets the generated TOC
+    > ul {
+      @include box(0, 0, true);
+
+      a { @extend %resetAnchors; }
+
+      p, li {
+        @include normalizeText();
+        @include truncate(100%);
+      }
+
+      > li {
+        @include normalizeText();
+        @include truncate(100%);
+        border-bottom: 1px solid rgba(#BDC3C7, .3);
+
+        > a {
+          display: block;
+          padding: 12px 20px;
+          transition:
+            background-color .3s,
+            border .3s
+          ;
+
+          &:hover {
+            border-left: 3px solid $secondaryAccent;
+            background-color: rgba(white, .8);
+          }
+        }
+
+        > p {
+          padding-top: 12px;
+          padding-left: 20px;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+
+        > ul {
+          @include box(0, 6px 0 12px 32px, true);
+          border-left: 2px solid rgba(#444, .25);
+
+          li {
+            padding: 10px 0;
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      background-color: rgba(black, .05);
+      width: 6px;
+    }
+    // &::-webkit-scrollbar-button {}
+    // &::-webkit-scrollbar-track {}
+    // &::-webkit-scrollbar-track-piece {}
+    &::-webkit-scrollbar-thumb { background-color: $secondaryAccent; }
+    // &::-webkit-scrollbar-corner {}
+    // &::-webkit-resizer {}
+  }
+
+  &Footer {
+    @include flex(row, space-between, center);
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 -4px 14px 0 rgba(black, .1);
+    background-color: white;
+
+    .DocSidebarFooterMetaInfo {
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: $flat-gray-2;
+    }
+
+    .DocSidebarCollapse {
+      @include round(50px);
+      position: relative;
+      // half the width, plus the padding
+      right: (25px + 20px) * -1;
+      background-color: $accent;
+      box-shadow: 0 1px 0 0 $accentContrast;
+      transition: transform .2s;
+      color: inherit;
+      padding: 13px;
+  
+      &:hover { transform: scale(1.1); }
+    }
+  }
+}
+
+
+/* ---------------------------------
+body
+--------------------------------- */
+
+.DocBody {
+  padding: 40px;
+  margin-left: 280px;
+  @media (min-width: $XL) { padding: 40px 12%; }
+
+  .DocHeading {
+    display: inline-block;
+    padding-bottom: .5rem;
+    margin: 0 0 2rem;
+    font-weight: 400;
+    font-size: 3rem;
+    color: #2C3D4F;
+    border-bottom: 2px solid rgba($accent, .6);
+  }
+}
+
+
+/* ---------------------------------
+generated content
+--------------------------------- */
+
+.DocGeneratedContent {
+  line-height: 2.25rem;
+  &::selection { background-color: $accent; }
+
+  // headings
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 20px 0;
+    font-weight: normal;
+    color: black;
+
+    + p,
+    + blockquote,
+    + ul,
+    + pre
+    { margin-top: 0; }
+  }
+
+  $baseFontSize: 1.6rem;
+  h1 { font-size: $baseFontSize * 1.9 }
+  h2 { font-size: $baseFontSize * 1.7 }
+  h3 { font-size: $baseFontSize * 1.3 }
+  h4 { font-size: $baseFontSize * 1.2 }
+  h5 { font-size: $baseFontSize * 1.1 }
+  h6 { font-size: $baseFontSize * 1 }
+
+  h3,
+  h4 {
+    display: inline-block;
+    border-bottom: 2px solid $transparent;
+    transition: border .3s;
+
+    &::before {
+      position: relative;
+      top: -.16em;
+      margin-right: 4px;
+      content: '\00b6';
+      color: $fontLight;
+      font-size: .8em;
+      transition: color .3s;
+    }
+
+    &:hover {
+      border-bottom: 2px solid $secondaryAccent;
+      &::before { color: $secondaryAccent; }
+    }
+  }
+
+
+  // paragraphs
+  p {
+    margin: 2rem 0;
+    line-height: 2.8rem;
+  }
+
+
+  // lists
+  ul {
+    list-style-type: circle;
+
+    li {
+      margin-bottom: 1rem;
+
+      > p { margin: 10px 0; }
+
+      ul {
+        list-style: none;
+        padding: 0 0 1rem;
+
+        li {
+          border-left: 2px solid $secondaryAccent;
+          margin: 0;
+          padding: .5rem 1rem;
+        }
+      }
+    }
+  }
+
+
+  // anchors
+  a {
+    @extend %resetAnchors;
+    display: inline-block;
+    padding: 2px 4px;
+    border-bottom: 2px solid rgba($accent, .4);
+    transition: all .3s;
+
+    &:hover {
+      color: black;
+      border-bottom: 2px solid $accent;
+
+      // background: white;
+      // border-radius: 4px;
+      // box-shadow: 0 2px 20px #0000003d;
+      // border-bottom: 2px solid $transparent;
+    }
+  }
+
+
+  // code blocks
+  pre,
+  code {
+    background-color: $secondaryAccent;
+    border-radius: $radius;
+  }
+
+  // credit: https://getbootstrap.com
+  code { word-break: break-word; }
+  
+  a > code { color: inherit; }
+  
+  kbd {
+    padding: 0.2rem 0.4rem;
+    font-size: 87.5%;
+    color: #fff;
+    background-color: #212529;
+    border-radius: 0.2rem;
+  }
+  
+  kbd kbd {
+    padding: 0;
+    font-size: 100%;
+    font-weight: 700;
+  }
+  
+  pre {
+    display: block;
+    // font-size: 87.5%;
+    // color: #212529;
+  }
+  
+  pre code {
+    font-size: inherit;
+    // color: inherit;
+    word-break: normal;
+  }
+
+
+  // vendor overrides
+  .gatsby-highlight,
+  code[class*="language-"] { font-size: 1.25rem; }
+
+  :not(pre) > code[class*="language-"] {
+    border-bottom: 1px solid rgba($flat-blue-4, .2);
+    border-radius: 0;
+    background: #f1f1f1;
+    color: $flat-blue-4;
+  }
+
+
+  blockquote {
+    position: relative;
+    margin: 4rem 0;
+    line-height: 2.4rem;
+    border: 2px solid rgba($secondaryAccent, .8);
+    padding: 2rem;
+    border-radius: $radius;
+
+    > * {
+      margin: 0;
+
+      // &::before,
+      // &::after {
+      //   position: absolute;
+      //   font-size: 4rem;
+      //   color: rgba($fontLight, .15);
+      // }
+
+      // &::before {
+      //   top: -2rem;
+      //   left: -2rem;
+      //   content: '\00ab';
+
+      // }
+
+      // &::after {
+      //   bottom: -2rem;
+      //   right: -2rem;
+      //   content: '\00bb';
+
+      // }
+    }
+
+    a:only-of-type,
+    a:last-of-type {
+      display: inline-block;
+      padding: 4px;
+      border: 1px dashed rgba($secondaryAccent, .6);
+      border-radius: $radius;
+      margin-left: 10px;
+      font-size: .9em;
+      text-align: center;
+      line-height: 100%;
+      transition: border .3s, color .3s;
+
+      &::before { content: '→ '; }
+      &:hover {
+        border: 1px solid $secondaryAccent;
+        color: $secondaryAccent;
+      }
+    }
+
+  }
+
+
+  // separator(s)
+  hr {
+    height: 1px;
+    border: 0;
+    border-bottom: $border;
+    margin: 40px 0;
+  }
+
+
+  // special formatting
+  /*
+    style list and generate
+    a leading right arrow
+    for list items that follow
+    a "refs" header
+  */
+  // h6 + ol,
+  // h6 + ul {
+  //   list-style: none;
+  //   padding: 0;
+
+  //   li::before { content: '→ '; }
+  // }
+}

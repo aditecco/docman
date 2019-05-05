@@ -1,0 +1,123 @@
+
+/* ========================
+logic.scss
+======================== */
+
+
+/* ---------------------------------
+resets & placeholders
+--------------------------------- */
+
+%styleInit {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	font-size: 62.5%;
+}
+
+
+%setBody {
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: 100vh;
+	font-size: 1.6rem;
+}
+
+
+%resetAnchors {
+	text-decoration: none;
+	color: inherit;
+}
+
+
+/* ---------------------------------
+functions
+--------------------------------- */
+
+// returns a container sized after the number of
+// desired columns + the desired column gutter
+@function colContainer($cols, $colWidth, $gutter) {
+  @return (($colWidth * $cols) + ($gutter * ($cols - 1))) * 1px;
+}
+
+
+// returns the size in ems based on
+// the desired target size in pixels
+@function emCalc($target, $context: 16) {
+	@return ($target / $context) * 1em;
+}
+
+
+/* ---------------------------------
+mixins
+--------------------------------- */
+
+// resets boxes or lists
+@mixin box($pad: 0, $mar: 0, $isList: false) {
+	padding: $pad;
+	margin: $mar;
+	@if $isList {
+		list-style: none;
+	}
+}
+
+
+// sets flexbox properties
+@mixin flex($direction, $justify, $align, $wrap: nowrap) {
+	display: flex;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+
+// creates a centered container
+// of the desired width
+@mixin container($w) {
+	display: block;
+	max-width: $w;
+	margin: 0 auto;
+}
+
+
+// creates a clearfix
+@mixin clearfix {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+// truncates a text at the given width
+@mixin truncate($w) {
+	width: $w;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+// creates a round shape
+@mixin round($w) {
+	display: inline-block;
+	width: $w;
+	height: $w;
+	border-radius: 100%;
+}
+
+
+/* ---------------------------------
+other
+--------------------------------- */
+
+// highlights all elements for debugging
+$debug: false;
+
+* { @if $debug { outline: 1px solid purple; } }
+
+// highlights the given element for debugging
+@mixin highlight { outline: 1px solid purple; }
