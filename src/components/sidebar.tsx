@@ -2,14 +2,7 @@
 Sidebar
 --------------------------------- */
 
-import React, {
-  ReactElement,
-  useState,
-  useRef,
-  useEffect,
-  ReactNode,
-  ReactHTMLElement,
-} from "react"
+import React, { ReactElement, useEffect, useRef, useState } from "react"
 
 interface IOwnProps {
   toc: string
