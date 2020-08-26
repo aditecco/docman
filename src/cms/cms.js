@@ -17,3 +17,5 @@ if (window.netlifyIdentity) {
     }
   })
 }
+
+console.log("…And I'm here!")

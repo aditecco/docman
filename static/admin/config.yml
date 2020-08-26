@@ -6,7 +6,7 @@ media_folder: static/img
 
 collections:
   - name: "docs" # Used in routes, e.g., /admin/collections/blog
-    label: "Docs" # Used in the UI
+    label: "Doc" # Used in the UI
     folder: "content/docs" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "index" # Filename template, e.g., YYYY-MM-DD-title.md
@@ -20,10 +20,5 @@ collections:
       - { label: "Type", name: "type", widget: "hidden", default: "docs" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - {
-          label: "Path",
-          name: "path",
-          widget: "string",
-          default: "/docs/{{slug}}",
-        }
+      - { label: "Path", name: "path", widget: "string", default: "/docs/" }
       - { label: "TOC", name: "TOC", widget: "boolean", default: true }
