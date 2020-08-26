@@ -4,9 +4,9 @@ Doc template
 
 import React from "react"
 import { graphql } from "gatsby"
-import Base from "../../components/base"
-import "./doc.template.scss"
-import Sidebar from "../../components/sidebar"
+import Base from "../components/base"
+import Sidebar from "../components/sidebar"
+import "../styles/doc.template.scss"
 
 export default function DocTemplate(props) {
   const { data } = props

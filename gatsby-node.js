@@ -11,13 +11,11 @@ const path = require("path")
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const DocTemplate = path.resolve(`src/templates/doc/doc.template.js`)
+  const DocTemplate = path.resolve(`src/templates/doc.template.js`)
 
   return graphql(`
     {
-      allMarkdownRemark(
-        limit: 1000
-      ) {
+      allMarkdownRemark(limit: 1000) {
         edges {
           node {
             frontmatter {
@@ -33,11 +31,11 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    	createPage({
-    		path: node.frontmatter.path,
-    		component: DocTemplate,
-    		context: {}, // additional data can be passed via context
-    	})
+      createPage({
+        path: node.frontmatter.path,
+        component: DocTemplate,
+        context: {}, // additional data can be passed via context
+      })
     })
   })
 }
