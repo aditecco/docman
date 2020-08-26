@@ -6,9 +6,23 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+        publicPath: `admin`,
+        htmlTitle: `DocMan Admin`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-load-script",
+      options: {
+        src: "/static/netlify-id.js",
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options:
@@ -88,11 +102,5 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    {
-      resolve: "gatsby-plugin-load-script",
-      options: {
-        src: "/static/netlify-id.js",
-      },
-    },
   ],
 }
