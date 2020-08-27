@@ -4,13 +4,13 @@ Sidebar
 
 import React, { ReactElement, useEffect, useRef, useState } from "react"
 
-interface IOwnProps {
-  toc: string
-}
+// interface IOwnProps {
+//   toc: string
+// }
 
-export default function Sidebar({ toc }: IOwnProps): ReactElement {
+export default function Sidebar({ toc } /*: IOwnProps*/) /*: ReactElement */ {
   const [collapsed, setCollapsed] = useState(false)
-  let body = useRef<HTMLDivElement>(null)
+  let body = useRef(/*<HTMLDivElement>*/ null)
 
   useEffect(() => {
     body.current = document.querySelector(".DocBody")
