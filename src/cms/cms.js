@@ -1,5 +1,5 @@
 /* ---------------------------------
-CMS Custom Templates
+cms.js
 --------------------------------- */
 
 import CMS from "netlify-cms-app"
@@ -12,10 +12,11 @@ if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", user => {
     if (!user) {
       window.netlifyIdentity.on("login", () => {
+        log("YO")
         document.location.href = "/admin/"
       })
     }
   })
 }
 
-console.log("…And I'm here!")
+console.log("@@@@@@@@@@cms.js")

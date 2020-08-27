@@ -32,7 +32,11 @@ const Index = data => (
     `}
     render={data => (
       <>
-        <Helmet script="https://identity.netlify.com/v1/netlify-identity-widget.js" />
+        <Helmet
+          script={[
+            "https://identity.netlify.com/v1/netlify-identity-widget.js",
+          ]}
+        />
 
         <header className="header">
           <img src={logo} className="logo" />
