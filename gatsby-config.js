@@ -17,12 +17,12 @@ module.exports = {
         htmlTitle: `DocMan Admin`,
       },
     },
-    {
-      resolve: "gatsby-plugin-load-script",
-      options: {
-        src: `${__dirname}/src/cms/netlify-id.js`,
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-load-script",
+    //   options: {
+    //     src: ``,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options:
