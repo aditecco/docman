@@ -8,7 +8,7 @@ import { StaticQuery, graphql } from "gatsby"
 // import Base from "../components/base"
 import SEO from "../components/seo"
 import logo from "../images/dcm-logo.svg"
-import "./index.scss"
+import "../styles/home.scss"
 import { Helmet } from "react-helmet"
 
 const Index = data => (
