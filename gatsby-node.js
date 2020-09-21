@@ -13,29 +13,95 @@ exports.createPages = ({ actions, graphql }) => {
 
   const DocTemplate = path.resolve(`src/templates/doc.template.js`)
 
-  return graphql(`
+  const docQuery = graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allFile(filter: { sourceInstanceName: { eq: "docs" } }) {
         edges {
           node {
-            frontmatter {
-              path
+            childMarkdownRemark {
+              id
+              html
+              timeToRead
+              excerpt
+              frontmatter {
+                author
+                path
+                tags
+                timestamp
+                title
+                toc
+                type
+              }
             }
           }
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      return Promise.reject(result.errors)
-    }
+  `)
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      createPage({
-        path: node.frontmatter.path,
-        component: DocTemplate,
-        context: {}, // additional data can be passed via context
+  const cookbookQuery = graphql(`
+    {
+      allFile(filter: { sourceInstanceName: { eq: "cookbooks" } }) {
+        edges {
+          node {
+            childMarkdownRemark {
+              id
+              html
+              timeToRead
+              excerpt
+              frontmatter {
+                author
+                path
+                tags
+                timestamp
+                title
+                toc
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const quickRefQuery = graphql(`
+    {
+      allFile(filter: { sourceInstanceName: { eq: "quick-refs" } }) {
+        edges {
+          node {
+            childMarkdownRemark {
+              id
+              html
+              timeToRead
+              excerpt
+              frontmatter {
+                author
+                path
+                tags
+                timestamp
+                title
+                toc
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  return Promise.all([docQuery, cookbookQuery, quickRefQuery])
+    .then(results =>
+      results.forEach(result => {
+        result.data.allFile.edges.forEach(({ node }) => {
+          createPage({
+            path: node.childMarkdownRemark.frontmatter.path,
+            component: DocTemplate,
+            context: node,
+          })
+        })
       })
-    })
-  })
+    )
+    .catch(err => console.error("@gatsby-node", err))
 }
