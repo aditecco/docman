@@ -1,11 +1,12 @@
 ---
-path: '/docs/sass-quick-reference'
-layout: dst-docs-2-col
-title: 'sass-quick-reference'
-type: 'quick-reference'
+author: ""
+path: "/reference/sass"
+tags: []
+timestamp: ""
+title: "sass-quick-reference"
 toc: true
+type: "quick-reference"
 ---
-
 
 ### Comments
 
@@ -30,10 +31,11 @@ Slash-style `//` comments are ignored by the Sass compiler.
 ---
 
 ### Imports
+
 In standard CSS, the `@import` statement requires a file extension: `@import 'settings.css';`; in Sass, there's no need for it.
 
 ```scss
-@import 'settings';
+@import "settings";
 
 h1 {
   color: $color-base;
@@ -60,6 +62,7 @@ When we indent a selector, we define a descendant relationship.
 ```
 
 ###### CSS output
+
 ```css
 .surveyor {
   border: 1px solid #ccc;
@@ -74,12 +77,13 @@ When we indent a selector, we define a descendant relationship.
 ```
 
 #### Nesting properties
+
 We can also nest properties, those with matching namespaces:
 
 ```scss
 .btn {
-    text-decoration: underline;
-    text-transform: lowercase;
+  text-decoration: underline;
+  text-transform: lowercase;
 }
 ```
 
@@ -89,11 +93,10 @@ Can be written as:
 .btn {
   text: {
     decoration: underline;
-    transform:  lowercase;
+    transform: lowercase;
   }
 }
 ```
-
 
 #### The parent selector
 
@@ -111,9 +114,10 @@ While nesting, we can reference the parent selector w/ the `&` symbol.
 }
 ```
 
-Notice we are creating a *compound selector* `.notice.alert`, not a mere descendant relationship:
+Notice we are creating a _compound selector_ `.notice.alert`, not a mere descendant relationship:
 
 ###### CSS output
+
 ```css
 .notice {
   background: yellow;
@@ -126,7 +130,7 @@ Notice we are creating a *compound selector* `.notice.alert`, not a mere descend
 }
 ```
 
-In the output, `&` will simply be replaced w/ the selector it refers to. 
+In the output, `&` will simply be replaced w/ the selector it refers to.
 
 Another typical use case for this technique is pseudo-selectors:
 
@@ -145,6 +149,7 @@ Another typical use case for this technique is pseudo-selectors:
 ```
 
 ###### CSS Output
+
 ```css
 .notice {
   background: yellow;
@@ -172,6 +177,7 @@ Selectors can also be added **before** the `&` reference:
 ```
 
 ###### CSS Output
+
 ```css
 .surveyor {
   border: 1px solid #ccc;
@@ -192,17 +198,18 @@ Beware of excessive nesting: try limiting nesting to 3 or 4 levels and consider 
   &.alert {
     background: red;
     box-shadow: 0 0 10px red;
-    }
+  }
   a {
     color: #222;
     &:hover {
       color: #313131;
-      }
     }
+  }
 }
 ```
 
 ###### CSS Output
+
 ```css
 .notice {
   background: yellow;
@@ -228,7 +235,7 @@ Beware of excessive nesting: try limiting nesting to 3 or 4 levels and consider 
 - Variable syntax: `$var-name: var-value;`
 - Variables can accept: strings (w/ or w/o quotes), numbers (w/ or w/o units), booleans, comma/space-separated lists, `null`.
 - Variables are block-scoped
-- Re-assigning a local var overrides the corresponding global var -- or: *overwriting a var in a declaration is global*
+- Re-assigning a local var overrides the corresponding global var -- or: _overwriting a var in a declaration is global_
 
 ```scss
 $base-color: #797979;
@@ -249,7 +256,6 @@ $base-color: #797979;
 }
 ```
 
-
 #### The default flag
 
 - A variable with the `!default` flag will be used as default **unless another value** for the same var **isn't already defined elsewhere.**
@@ -260,7 +266,7 @@ $base-padding: 10px !default;
 
 .modal {
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: $base-padding;
 }
 .modal-title {
@@ -275,7 +281,6 @@ $base-padding: 10px !default;
 }
 ```
 
-
 #### Variables w/ lists
 
 ```scss
@@ -283,7 +288,7 @@ $modal-padding: 20px 10px 15px !default;
 
 .modal {
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   padding: $modal-padding;
 }
 .modal-title {
@@ -301,7 +306,7 @@ $modal-padding: 20px 10px 15px !default;
 #### Variable nesting
 
 ```scss
-$font-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 body {
   font-family: $font-base;
@@ -320,6 +325,7 @@ body {
 ```
 
 #### Variable interpolation
+
 Similar to JavaScript ES6's string templates, we can interpolate variables with the syntax `#{$var-name}`
 
 ```scss
@@ -357,8 +363,8 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
   - We can overcome this by using **variable arguments:** `@mixin base-gradient($grad-definition...) {}` -- similar to ES6's rest params
   - Variable args can also be used when calling a mixin
 
-
 ###### No args
+
 ```scss
 @mixin assemble {
   background: #fff;
@@ -375,6 +381,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 ```
 
 ###### w/ argument
+
 ```scss
 @mixin assemble($bg) {
   background: $bg;
@@ -391,6 +398,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 ```
 
 ###### w/ default argument
+
 ```scss
 @mixin assemble($bg: #fff) {
   background: $bg;
@@ -407,6 +415,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 ```
 
 ###### w/ multiple arguments
+
 ```scss
 @mixin assemble($bg: #fff, $pad: 10px) {
   background: $bg;
@@ -423,6 +432,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 ```
 
 ###### w/ keyword arguments
+
 ```scss
 @mixin assemble($bg: #fff, $pad: 10px) {
   background: $bg;
@@ -434,11 +444,15 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
   @include assemble;
 }
 .highrise {
-  @include assemble($bg: #797979, $pad: 20px); // we repeat the exact variable name inclusive of `$`, followed by the value
+  @include assemble(
+    $bg: #797979,
+    $pad: 20px
+  ); // we repeat the exact variable name inclusive of `$`, followed by the value
 }
 ```
 
 ###### Argument interpolation
+
 ```scss
 @mixin assemble($side, $bg: #fff, $pad: 10px) {
   background: $bg;
@@ -455,6 +469,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 ```
 
 ###### Variable arguments
+
 ```scss
 @mixin modal($shadow...) {
   box-shadow: $shadow;
@@ -470,7 +485,7 @@ Optionally, they can declare arguments `@mixin my-mixin($arg) {}` - and pass arg
 
 ### Extends
 
-Extends are useful for managing CSS properties that are *repeated among different elements.*
+Extends are useful for managing CSS properties that are _repeated among different elements._
 
 ```scss
 .blueprint {
@@ -486,8 +501,10 @@ Extends are useful for managing CSS properties that are *repeated among differen
 ```
 
 ###### CSS output
+
 ```css
-.blueprint, .surveyor {
+.blueprint,
+.surveyor {
   background: blue;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -531,20 +548,25 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 - `.notice a:hover, .error a:hover` - parses the parent selector on the nested selector
 
 ###### CSS Output
+
 ```css
-.notice, .error {
+.notice,
+.error {
   background: yellow;
   border: 5px solid #000;
   padding: 20px;
 }
-.notice.alert, .alert.error {
+.notice.alert,
+.alert.error {
   background: red;
   box-shadow: 0 0 10px red;
 }
-.notice a, .error a {
+.notice a,
+.error a {
   color: #222;
 }
-.notice a:hover, .error a:hover {
+.notice a:hover,
+.error a:hover {
   color: #313131;
 }
 ```
@@ -568,8 +590,11 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ```
 
 ###### CSS Output
+
 ```css
-.socket, .wrench, .bolt {
+.socket,
+.wrench,
+.bolt {
   border-radius: 50%;
   padding: 15px;
   width: 30px;
@@ -597,7 +622,7 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
   zoom: 1;
   &:before,
   &:after {
-    content: '';
+    content: "";
     display: table;
   }
   &:after {
@@ -612,12 +637,14 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ```
 
 ###### CSS Output
+
 ```css
 .factory {
   zoom: 1;
 }
-.factory:before, .factory:after {
-  content: '';
+.factory:before,
+.factory:after {
+  content: "";
   display: table;
 }
 .factory:after {
@@ -630,6 +657,7 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ```
 
 ###### Another example
+
 ```scss
 %container {
   background: blue;
@@ -656,8 +684,10 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ```
 
 ###### CSS Output
+
 ```css
-.blueprint, .surveyor {
+.blueprint,
+.surveyor {
   background: blue;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -698,6 +728,7 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ```
 
 ###### CSS Output
+
 ```css
 .intro {
   background: #000;
@@ -709,6 +740,7 @@ Notice how the Sass compiler traverses the tree structure and recursively genera
 ---
 
 ### Mixins, extends, functions: when to use which
+
 - **Mixins:** similar sets of properties <u>used multiple times</u> with small variations
 - **Extends:** sets of properties that <u>match exactly</u>
 - **Functions:** commonly-used operations to <u>determine values</u>
@@ -734,18 +766,19 @@ $size: 18px;
 .switch {
   font-size: $size;
   @if $size <= 16 {
-    font-family: 'Arial, sans-serif';
+    font-family: "Arial, sans-serif";
   } @else {
-    font-family: 'Helvetica, sans-serif';
+    font-family: "Helvetica, sans-serif";
   }
 }
 ```
 
 ###### CSS Output
+
 ```css
 .switch {
   font-size: 18px;
-  font-family: 'Helvetica, sans-serif';
+  font-family: "Helvetica, sans-serif";
 }
 ```
 
@@ -757,11 +790,11 @@ $size: 18px;
 .switch {
   font-size: $size;
   @if $size <= 16 {
-    font-family: 'Arial, sans-serif';
+    font-family: "Arial, sans-serif";
   } @else if $size <= 24 {
-    font-family: 'Georgia, serif';
+    font-family: "Georgia, serif";
   } @else {
-    font-family: 'Helvetica, sans-serif';
+    font-family: "Helvetica, sans-serif";
   }
 }
 ```
@@ -771,6 +804,7 @@ $size: 18px;
 ### Iteration
 
 ##### `@each`
+
 - The `@each` directive allows us to loop through each list item, similar to a JS `for ... in` loop
 - The syntax: `@each $list-element in $list { <rules> }`
 
@@ -779,23 +813,26 @@ $tools: socket, wrench, bolt;
 
 @each $el in $tools {
   .tool-#{$el} {
-    background: url('#{$el}.png') no-repeat;
+    background: url("#{$el}.png") no-repeat;
   }
 }
 ```
 
 ###### CSS Output
+
 ```css
 .tool-socket {
-  background: url("socket.png") no-repeat; }
+  background: url("socket.png") no-repeat;
+}
 
 .tool-wrench {
-  background: url("wrench.png") no-repeat; }
+  background: url("wrench.png") no-repeat;
+}
 
 .tool-bolt {
-  background: url("bolt.png") no-repeat; }
+  background: url("bolt.png") no-repeat;
+}
 ```
-
 
 ##### `@for`
 
@@ -810,7 +847,6 @@ The syntax:
 - When declaring the loop, we initialize the iterator var, `$i`
 - We also manually specify where our loop should start and end
 
-
 ##### `@while`
 
 The syntax:
@@ -820,7 +856,7 @@ $i: <iterator initial value>
 
 @while $i <condition> {
   <rules>
-  
+
   $i: $i + <iterator increment>;
 }
 ```
@@ -842,22 +878,27 @@ $i: 1;
 ```
 
 ###### CSS Output
+
 ```css
 .row-1 {
   background: #ccc;
-  height: 10px; }
+  height: 10px;
+}
 
 .row-3 {
   background: #ccc;
-  height: 30px; }
+  height: 30px;
+}
 
 .row-5 {
   background: #ccc;
-  height: 50px; }
+  height: 50px;
+}
 
 .row-7 {
   background: #ccc;
-  height: 70px; }
+  height: 70px;
+}
 ```
 
 ---
@@ -886,7 +927,6 @@ $i: 1;
 - Sass will force-convert compatible units: `10px + 4pt // 15.33333px;`
 - Operations on non-compatible units will generate errors: `10px + 4em // Error, absolute VS relative unit`
 
-
 ```scss
 $gutter: 20px;
 
@@ -903,6 +943,7 @@ $gutter: 20px;
 ```
 
 ###### CSS Output
+
 ```css
 .factory {
   background: #fff;
@@ -936,7 +977,6 @@ $gutter: 20px;
   - `complement($color)`
   - More…
 
-
 ```scss
 $color-link: #3097b4;
 
@@ -953,15 +993,17 @@ a {
 ```
 
 ###### CSS Output
+
 ```css
 a {
   color: #3097b4;
-  text-decoration: underline; }
+  text-decoration: underline;
+}
 a:hover {
-    color: #cf684b;
+  color: #cf684b;
 }
 a:active {
-    color: #335a65;
+  color: #335a65;
 }
 ```
 
@@ -974,10 +1016,10 @@ a:active {
 
 ```scss
 $theme: modern;
-$font: 'serif';
+$font: "serif";
 
 @if $theme == modern {
-  $font: 'sans-' + $font;
+  $font: "sans-" + $font;
 }
 
 .sign {
@@ -986,6 +1028,7 @@ $font: 'serif';
 ```
 
 ###### CSS Output
+
 ```css
 .sign {
   font-family: "sans-serif";
@@ -1010,14 +1053,15 @@ $size: 3.75em;
 ```
 
 ###### CSS Output
+
 ```css
 .sign {
   font-size: 3.75em;
   font-weight: bold;
   padding: 20px 40px;
 }
-  .sign span {
-    font-size: 2em;
+.sign span {
+  font-size: 2em;
 }
 ```
 
@@ -1040,7 +1084,6 @@ $size: 3.75em;
   - `complement($color)`
   - More…
 
-
 ```scss
 $color-base: #797979;
 
@@ -1052,6 +1095,7 @@ $color-base: #797979;
 ```
 
 ###### CSS Output
+
 ```css
 .modal {
   background: rgba(121, 121, 121, 0.75);
@@ -1068,11 +1112,11 @@ Basic use of media queries in Sass through the `@media` keyword and nesting:
 
 ```css
 .sidebar {
-    border: 1px solid #ccc;
-    @media(min-width: 700px) {
-        float: right;
-        width: 30%;
-    }
+  border: 1px solid #ccc;
+  @media (min-width: 700px) {
+    float: right;
+    width: 30%;
+  }
 }
 ```
 
@@ -1080,18 +1124,18 @@ Basic use of media queries in Sass through the `@media` keyword and nesting:
 
 ```scss
 @mixin respond-to {
-  @media(min-width: 700px) {
-    @content // receives the content of the `@include` that follows
+  @media (min-width: 700px) {
+    @content // receives the content of the `@include` that follows;;;;;;
   }
 }
 
 .sidebar {
-    border: 1px solid #ccc;
-    @include respond-to {
-      // the content of this block is passed into `@content`
-        float: right;
-        width: 30%;
-    }
+  border: 1px solid #ccc;
+  @include respond-to {
+    // the content of this block is passed into `@content`
+    float: right;
+    width: 30%;
+  }
 }
 ```
 
@@ -1103,10 +1147,10 @@ Will output:
 }
 
 @media (min-width: 700px) {
-    .sidebar {
-      float: right;
-      width: 30%;
-    }
+  .sidebar {
+    float: right;
+    width: 30%;
+  }
 }
 ```
 
@@ -1114,11 +1158,11 @@ Which is the same output we'd get with the regular nested media query:
 
 ```css
 .sidebar {
-    border: 1px solid #ccc;
-    @media(min-width: 700px) {
-        float: right;
-        width: 30%;
-    }
+  border: 1px solid #ccc;
+  @media (min-width: 700px) {
+    float: right;
+    width: 30%;
+  }
 }
 ```
 
@@ -1126,19 +1170,19 @@ Anyway, this technique can be much more flexible:
 
 ```scss
 @mixin respond-to($val, $query) {
-  @media($val: $query) {
-    @content // receives the content of the `@include` that follows
+  @media ($val: $query) {
+    @content // receives the content of the `@include` that follows;;;;;;
   }
 }
 
 .sidebar {
-    border: 1px solid #ccc;
-    @include respond-to(min-width, 700px) {
-      // we're dynamically passing media query properties as arguments
-      // the content of this block is passed into `@content`
-        float: right;
-        width: 30%;
-    }
+  border: 1px solid #ccc;
+  @include respond-to(min-width, 700px) {
+    // we're dynamically passing media query properties as arguments
+    // the content of this block is passed into `@content`
+    float: right;
+    width: 30%;
+  }
 }
 ```
 
@@ -1163,18 +1207,19 @@ An example:
 ```
 
 ###### CSS Output
+
 ```css
 .factory {
-  width: 100%; 
+  width: 100%;
 }
 @media (min-width: 960px) {
-    .factory {
-      width: 62.5%; 
-  } 
+  .factory {
+    width: 62.5%;
+  }
 }
 @media (min-width: 768px) {
-    .factory {
-      width: 50%; 
-  } 
+  .factory {
+    width: 50%;
+  }
 }
 ```

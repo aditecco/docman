@@ -1,8 +1,11 @@
 ---
-path: '/docs/test'
-title: 'Test doc'
-type: 'quick-reference'
+author: ""
+path: "/docs/test"
+tags: ["dummy"]
+timestamp: ""
+title: "Test doc"
 toc: true
+type: "doc"
 ---
 
 ### Lorem
@@ -15,15 +18,17 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam vitae dui. Nul
 <html>
   <head>
     <title>Title here</title>
-  
+
     <meta name="author" content=" " />
     <meta name="description" content=" " />
-    <meta name="keywords" content=" ">
-  
+    <meta name="keywords" content=" " />
+
     <link rel="stylesheet" href="" type="text/css" />
 
     <style type="text/css">
-      * {font-family: 'Helvetica, Arial', sans-serif;}
+      * {
+        font-family: "Helvetica, Arial", sans-serif;
+      }
     </style>
   </head>
 
@@ -41,9 +46,9 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam vitae dui. Nul
     <main>
       <h1>Big title</h1>
       <p>Hello world!</p>
-      <p>Today is Sunday, 5 May 2019 at 04:00:26 Central European Summer Time</p>
-
-      
+      <p>
+        Today is Sunday, 5 May 2019 at 04:00:26 Central European Summer Time
+      </p>
     </main>
 
     <footer>&copy; xyz</footer>
@@ -66,10 +71,9 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam vitae dui. Nul
 ### Dolor sit amet
 
 ```javascript
+const x = [1, 2, 3]
 
-const x = [1, 2, 3];
+const y = [...x, 4]
 
-const y = [...x, 4];
-
-console.log(y);
+console.log(y)
 ```
