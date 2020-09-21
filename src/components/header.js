@@ -1,4 +1,3 @@
-
 /* ---------------------------------
 Header
 --------------------------------- */
@@ -6,33 +5,27 @@ Header
 import { Link } from "gatsby"
 // import PropTypes from "prop-types"
 import React from "react"
-import logo from '../images/dcm-logo.svg'
-import '../styles/header.scss'
+import logo from "../images/dcm-logo.svg"
+import "../styles/header.scss"
 
-const Header = (props) => (
+const Header = props => (
   <header className="Header">
-    <div className="logo">
-      <Link to="/">
+    <Link to="/">
+      <div className="logo">
         <img src={logo} alt="LocDocs logo" />
-      </Link>
-    </div>
+      </div>
+    </Link>
 
     <nav className="MainNav">
       <ul>
         <li>
-          <Link
-            className="MainNavItem"
-            to="/"
-          >
+          <Link className="MainNavItem" to="/">
             {`Quick-Refs`}
           </Link>
         </li>
 
         <li>
-          <Link
-            className="MainNavItem"
-            to="/"
-          >
+          <Link className="MainNavItem" to="/">
             {`Cookbooks`}
           </Link>
         </li>
@@ -56,10 +49,7 @@ const Header = (props) => (
         </li> */}
 
         <li>
-          <Link
-            className="MainNavItem"
-            to="/"
-          >
+          <Link className="MainNavItem" to="/">
             {`Random`}
           </Link>
         </li>

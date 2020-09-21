@@ -19,4 +19,4 @@ CMS.registerPreviewTemplate("docs", DocTemplate)
 //   })
 // }
 
-console.log("@@@@@@@@@@cms.js")
+console.log("@@@ cms.js")
