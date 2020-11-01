@@ -1,9 +1,11 @@
 ---
-path: '/docs/sass-quick-reference'
+path: /docs/sass-quick-reference
 layout: dst-docs-2-col
-title: 'sass-quick-reference'
-type: 'quick-reference'
+title: Sass Quick Reference
+type: quick-reference
 toc: true
+date: 2020-11-01T13:55:33.576Z
+TOC: true
 ---
 
 
