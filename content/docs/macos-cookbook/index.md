@@ -94,6 +94,12 @@ chflags nohidden {target}
 
 ---
 
+### Show hidden files
+
+In Finder, use this shortcut: `<kbd>CMD</kbd> <kbd>SHIFT</kbd> <kbd>DOT</kbd>`.
+
+---
+
 ### Manage, create, delete Firefoxuser profiles
 
 From terminal, navigate to `/Applications` and enter the following command:
