@@ -2,7 +2,7 @@
 title: TypeScript CookBook
 type: docs
 date: 2020-11-29T00:56:11.979Z
-path: /docs/
+path: /cookbooks/typescript-cookbook
 TOC: true
 ---
 #### Properly type React Children
