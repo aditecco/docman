@@ -85,3 +85,57 @@ Provide the type of the target element to the ref.
 
 ---
 
+#### Type a library which doesn't come with its own types
+
+In a type definition file (filename must follow the convention `file.d.ts`), write:
+
+```typescript
+declare module 'lib-name';
+```
+
+This way TS will register the lib in the type system and (hopefully) turn off any errors.
+
+---
+
+#### Type a class component
+
+```tsx
+
+interface props {}
+
+export default class Example extends Component<Props> { // ... }
+```
+
+---
+
+#### Null types
+
+Null types are automatically accounted for by TS in our type declarations (unless the `strictNullChecks` config option is active); `null` and `undefined` are assignable to every type.
+
+```typescript
+// TS sees: x: string | null | undefined
+var x: string = 'x';
+// no TS errors
+x = null;
+x = undefined;
+
+```
+
+---
+
+#### Create a class based on an interface
+
+```typescript
+interface Xyz {
+  x: string;
+}
+
+class Example implements Xyz {
+  x: string
+
+  // ...
+}
+```
+
+---
+
