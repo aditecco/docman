@@ -2,14 +2,14 @@
 title: TypeScript CookBook
 type: docs
 date: 2020-11-29T00:56:11.979Z
-path: /cookbooks/typescript-cookbook
+path: /cookbooks/typescript
 TOC: true
 ---
 #### Properly type React Children
 
 In your functional component, use `React.FC<Props>` as function type and `children` will be implicitly accounted for in your `Props`, without needing to explicitly type them.
 
-```typescript-react
+```tsx
 import React, { ReactElement } from 'react';
 
 interface OwnProps {
@@ -51,7 +51,7 @@ Notice the shorthand notation.
 
 #### Type an event handler's `event` param
 
-```typescript-react
+```tsx
 interface OwnProps {
   clickHandler(e: React.MouseEvent): void;
 }
@@ -73,7 +73,7 @@ Don't use regular DOM events, but events under the `React` namespace, such as `R
 
 #### Type a `ref`
 
-```typescript-react
+```tsx
 const example: React.FC<OwnProps> = (): ReactElement => {
   const ref = useRef<HTMLDivElement>(null);
 
