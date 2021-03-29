@@ -1,4 +1,13 @@
 
-## DocMan is a Gatsby-based documentation manager.
+DocMan
+======
 
-![image.png](./image.png)
+![](./.preview/dcm-01.png)
+
+DocMan is a Gatsby-based documentation manager.
+
+#### Stack
+
+- Gatsby
+- React
+- TypeScript
