@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@sanity/cli": "^2.23.2",
     "flat-ui-colors-sass": "^1.0.0",
     "gatsby": "^2.24.49",
     "gatsby-cli": "^2.12.88",
@@ -14,20 +15,20 @@
     "gatsby-plugin-netlify-cms": "^4.3.11",
     "gatsby-plugin-offline": "^2.2.10",
     "gatsby-plugin-react-helmet": "^3.3.10",
-    "gatsby-plugin-sass": "^2.0.11",
+    "gatsby-plugin-sass": "2.3.12",
     "gatsby-plugin-sharp": "^2.6.29",
     "gatsby-remark-prismjs": "^3.5.10",
     "gatsby-source-filesystem": "^2.3.25",
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.5.13",
     "netlify-cms-app": "^2.12.19",
-    "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.21.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "sass": "^1.32.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
