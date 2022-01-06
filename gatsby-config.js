@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `DocMan`,
@@ -6,8 +10,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -20,6 +25,17 @@ module.exports = {
           name: "markdown-pages",
           path: `${__dirname}/content/docs`,
         },
+    },
+    {
+      resolve: `gatsby-source-sanity`,
+      options: {
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
+        token: process.env.SANITY_TOKEN,
+        // If the Sanity GraphQL API was deployed using `--tag <name>`,
+        // use `graphqlTag` to specify the tag name. Defaults to `default`.
+        graphqlTag: "default",
+      },
     },
     // {
     //   resolve: `gatsby-plugin-manifest`,
