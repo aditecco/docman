@@ -10,20 +10,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-plugin-netlify-cms`,
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-        publicPath: `admin`,
-        htmlTitle: `DocMan Admin`,
-      },
-    },
-    // {
-    //   resolve: "gatsby-plugin-load-script",
-    //   options: {
-    //     src: ``,
-    //   },
-    // },
-    {
       resolve: `gatsby-source-filesystem`,
       options:
         // options: {
