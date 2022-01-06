@@ -6,12 +6,12 @@ import React from "react"
 import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 // import Base from "../components/base"
-import SEO from "../components/seo"
+// import SEO from "../components/seo"
 import logo from "../images/dcm-logo.svg"
-import "./index.scss"
+import "../styles/index.scss"
 import { Helmet } from "react-helmet"
 
-const Index = data => (
+const Index = (data) => (
   <StaticQuery
     query={graphql`
       query {
@@ -30,13 +30,9 @@ const Index = data => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <>
-        <Helmet
-          script={[
-            "https://identity.netlify.com/v1/netlify-identity-widget.js",
-          ]}
-        />
+        <Helmet />
 
         <header className="header">
           <img src={logo} className="logo" />
