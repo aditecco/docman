@@ -26,7 +26,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
-    "sass": "^1.32.1"
+    "rehype-sanitize": "^5.0.1",
+    "rehype-stringify": "^9.0.2",
+    "remark": "^14.0.2",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "remark-toc": "^8.0.1",
+    "sass": "^1.32.1",
+    "unified": "^10.1.1"
   },
   "devDependencies": {
     "@sanity/cli": "^2.23.2",
