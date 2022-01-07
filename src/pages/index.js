@@ -7,6 +7,7 @@ import { graphql, Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import logo from "../images/dcm-logo.svg"
 import "../styles/index.scss"
+import classNames from "classnames"
 
 export default function HomePage({ data }) {
   const [catFilter, setCatFilter] = useState("")
@@ -31,7 +32,7 @@ export default function HomePage({ data }) {
         <nav>
           <ul className="listFilter">
             {catFilter && (
-              <li className="listFilterItem" onClick={() => setCatFilter("")}>
+              <li className={"listFilterItem"} onClick={() => setCatFilter("")}>
                 Reset filter
               </li>
             )}
@@ -39,7 +40,10 @@ export default function HomePage({ data }) {
             {data.allSanityCategory.nodes.map((cat) => (
               <li
                 key={cat.id}
-                className="listFilterItem"
+                className={classNames(
+                  "listFilterItem",
+                  catFilter === cat.title && "listFilterItem--selected"
+                )}
                 onClick={() => setCatFilter(cat.title)}
               >
                 {cat.title}
@@ -59,7 +63,7 @@ export default function HomePage({ data }) {
                 : node
             )
             .map((node) => (
-              <li className="contentIndexItem" key={node.id}>
+              <li className={classNames("contentIndexItem")} key={node.id}>
                 <Link
                   className="contentIndexItemAnchor"
                   to={node.slug && node.slug.current}
