@@ -2,51 +2,58 @@
 Doc template
 --------------------------------- */
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 import Base from "../components/base"
 import Sidebar from "../components/sidebar"
 import "../styles/doc.template.scss"
+import { parseWithRemark } from "../utils"
 
 export default function DocTemplate(props) {
-  const { data } = props
-  const { markdownRemark: post } = data
+  const [pageBody, setPageBody] = useState("")
+  const { pageContext: content } = props
+
+  useEffect(() => {
+    parseWithRemark(content.body).then(({ value }) => setPageBody(value))
+  }, [])
 
   return (
     <Base {...props}>
       <div className="DocContent">
-        <Sidebar toc={post.tableOfContents} />
+        {/*<Sidebar toc={post.tableOfContents} />*/}
 
         <main className="DocBody">
-          <h2 className="DocHeading">
-            {post.frontmatter.title
-              .replace("-", " ")
-              .replace(/\b\w/g, r => r.toUpperCase())}
-          </h2>
+          <h2 className="DocHeading">{content.title}</h2>
 
-          <div
-            className="DocGeneratedContent"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          {!pageBody ? (
+            "loading"
+          ) : (
+            <div
+              className="DocGeneratedContent"
+              dangerouslySetInnerHTML={{
+                __html: pageBody,
+              }}
+            />
+          )}
         </main>
       </div>
     </Base>
   )
 }
 
-export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        path
-        title
-      }
-      tableOfContents(
-        pathToSlugField: "frontmatter.path"
-        heading: null
-        maxDepth: 4
-      )
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query BlogPostByPath($path: String!) {
+//     markdownRemark(frontmatter: { path: { eq: $path } }) {
+//       html
+//       frontmatter {
+//         path
+//         title
+//       }
+//       tableOfContents(
+//         pathToSlugField: "frontmatter.path"
+//         heading: null
+//         maxDepth: 4
+//       )
+//     }
+//   }
+// `
