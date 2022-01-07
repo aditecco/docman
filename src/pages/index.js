@@ -3,52 +3,29 @@ index
 --------------------------------- */
 
 import React from "react"
-import { Link } from "gatsby"
-import { StaticQuery, graphql } from "gatsby"
-// import Base from "../components/base"
-// import SEO from "../components/seo"
+import { graphql, Link } from "gatsby"
+import { Helmet } from "react-helmet"
 import logo from "../images/dcm-logo.svg"
 import "../styles/index.scss"
-import { Helmet } from "react-helmet"
 
-const Index = (data) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allMarkdownRemark {
-          totalCount
-          edges {
-            node {
-              id
-              frontmatter {
-                title
-                path
-              }
-              excerpt
-            }
-          }
-        }
-      }
-    `}
-    render={(data) => (
-      <>
-        <Helmet />
+export default function HomePage({ data }) {
+  return (
+    <>
+      <Helmet />
 
-        <header className="header">
-          <img src={logo} className="logo" />
+      <header className="header">
+        <img src={logo} className="logo" alt={"DocMan logo"} />
 
-          <div className="heading">
-            <h1 className="headingTitle">
-              Your personal documentation manager
-            </h1>
+        <div className="heading">
+          <h1 className="headingTitle">{data.site.siteMetadata.description}</h1>
 
-            <h3 className="headingSubtitle">
-              Write, generate &amp; organize your documentation.
-            </h3>
-          </div>
-        </header>
+          <h3 className="headingSubtitle">
+            Write, generate &amp; organize your documentation.
+          </h3>
+        </div>
+      </header>
 
-        {/* <div className="contentFilter">
+      {/* <div className="contentFilter">
           <nav>
             <ul className="listFilter">
               <li className="listFilterItem">
@@ -74,28 +51,59 @@ const Index = (data) => (
           </nav>
         </div> */}
 
-        <main className="contentIndex">
-          {/* <h4>{data.allMarkdownRemark.totalCount} Posts</h4> */}
-          <ol>
-            {data.allMarkdownRemark.edges.map(({ node }) => (
-              <li className="contentIndexItem" key={node.id}>
-                <Link
-                  className="contentIndexItemAnchor"
-                  to={node.frontmatter.path}
-                >
-                  <h3 className="contentIndexItemTitle">
-                    {node.frontmatter.title}
-                  </h3>
+      <main className="contentIndex">
+        {/* <h4>{data.allMarkdownRemark.totalCount} Posts</h4> */}
+        <ol>
+          {data.allSanityPost.nodes.map((node) => (
+            <li className="contentIndexItem" key={node.id}>
+              <Link
+                className="contentIndexItemAnchor"
+                to={node.slug && node.slug.current}
+              >
+                <h3 className="contentIndexItemTitle">{node.title}</h3>
 
-                  {/* <p>{node.excerpt.substring(0, 60)}</p> */}
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </main>
-      </>
-    )}
-  />
-)
+                {/* <p>{node.excerpt.substring(0, 60)}</p> */}
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </main>
+    </>
+  )
+}
 
-export default Index
+// NOTE would be nice to string-interpolate
+// in queries, but it's not possible yet
+export const homepageQuery = graphql`
+  fragment SiteMetadata on Site {
+    siteMetadata {
+      title
+      description
+      author
+    }
+  }
+
+  {
+    site {
+      ...SiteMetadata
+    }
+    allSanityPost(limit: 1000) {
+      nodes {
+        id
+        title
+        slug {
+          current
+        }
+        author {
+          name
+        }
+        categories {
+          title
+          description
+        }
+        publishedAt
+        body
+      }
+    }
+  }
+`
