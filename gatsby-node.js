@@ -7,33 +7,14 @@
 // You can delete this file if you're not using it
 
 const path = require("path")
+const { ALL_SANITY_POST } = require("./src/queries")
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
   const DocTemplate = path.resolve(`src/templates/doc.template.js`)
 
-  return graphql(`
-    {
-      allSanityPost(limit: 1000) {
-        nodes {
-          title
-          slug {
-            current
-          }
-          author {
-            name
-          }
-          categories {
-            title
-            description
-          }
-          publishedAt
-          body
-        }
-      }
-    }
-  `).then((result) => {
+  return graphql(ALL_SANITY_POST).then((result) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
