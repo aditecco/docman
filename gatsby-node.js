@@ -15,26 +15,40 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            frontmatter {
-              path
-            }
+      allSanityPost(limit: 1000) {
+        nodes {
+          title
+          slug {
+            current
           }
+          author {
+            name
+          }
+          categories {
+            title
+            description
+          }
+          publishedAt
+          body
         }
       }
     }
-  `).then(result => {
+  `).then((result) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    result.data.allSanityPost.nodes.forEach((node) => {
+      if (!node) return
+
       createPage({
-        path: node.frontmatter.path,
+        path: node.slug && node.slug.current,
         component: DocTemplate,
-        context: {}, // additional data can be passed via context
+        context: {
+          ...node,
+          slug: node.slug && node.slug.current,
+          author: node.author && node.author.name,
+        },
       })
     })
   })
