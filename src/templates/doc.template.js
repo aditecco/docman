@@ -40,20 +40,3 @@ export default function DocTemplate(props) {
     </Base>
   )
 }
-
-// export const pageQuery = graphql`
-//   query BlogPostByPath($path: String!) {
-//     markdownRemark(frontmatter: { path: { eq: $path } }) {
-//       html
-//       frontmatter {
-//         path
-//         title
-//       }
-//       tableOfContents(
-//         pathToSlugField: "frontmatter.path"
-//         heading: null
-//         maxDepth: 4
-//       )
-//     }
-//   }
-// `
