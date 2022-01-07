@@ -2,13 +2,15 @@
 index
 --------------------------------- */
 
-import React from "react"
+import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { Helmet } from "react-helmet"
 import logo from "../images/dcm-logo.svg"
 import "../styles/index.scss"
 
 export default function HomePage({ data }) {
+  const [catFilter, setCatFilter] = useState("")
+
   return (
     <>
       <Helmet />
@@ -25,47 +27,49 @@ export default function HomePage({ data }) {
         </div>
       </header>
 
-      {/* <div className="contentFilter">
-          <nav>
-            <ul className="listFilter">
-              <li className="listFilterItem">
-                Quick-refs
+      <div className="contentFilter">
+        <nav>
+          <ul className="listFilter">
+            {catFilter && (
+              <li className="listFilterItem" onClick={() => setCatFilter("")}>
+                Reset filter
               </li>
+            )}
 
-              <li className="listFilterItem">
-                Cookbooks
+            {data.allSanityCategory.nodes.map((cat) => (
+              <li
+                key={cat.id}
+                className="listFilterItem"
+                onClick={() => setCatFilter(cat.title)}
+              >
+                {cat.title}
               </li>
-
-              <li className="listFilterItem">
-                Notes
-              </li>
-
-              <li className="listFilterItem">
-                Excercises
-              </li>
-
-              <li className="listFilterItem">
-                Random
-              </li>
-            </ul>
-          </nav>
-        </div> */}
+            ))}
+          </ul>
+        </nav>
+      </div>
 
       <main className="contentIndex">
         {/* <h4>{data.allMarkdownRemark.totalCount} Posts</h4> */}
         <ol>
-          {data.allSanityPost.nodes.map((node) => (
-            <li className="contentIndexItem" key={node.id}>
-              <Link
-                className="contentIndexItemAnchor"
-                to={node.slug && node.slug.current}
-              >
-                <h3 className="contentIndexItemTitle">{node.title}</h3>
+          {data.allSanityPost.nodes
+            .filter((node) =>
+              catFilter
+                ? node.categories.find((cat) => cat.title === catFilter)
+                : node
+            )
+            .map((node) => (
+              <li className="contentIndexItem" key={node.id}>
+                <Link
+                  className="contentIndexItemAnchor"
+                  to={node.slug && node.slug.current}
+                >
+                  <h3 className="contentIndexItemTitle">{node.title}</h3>
 
-                {/* <p>{node.excerpt.substring(0, 60)}</p> */}
-              </Link>
-            </li>
-          ))}
+                  {/* <p>{node.excerpt.substring(0, 60)}</p> */}
+                </Link>
+              </li>
+            ))}
         </ol>
       </main>
     </>
@@ -86,6 +90,12 @@ export const homepageQuery = graphql`
   {
     site {
       ...SiteMetadata
+    }
+    allSanityCategory {
+      nodes {
+        title
+        id
+      }
     }
     allSanityPost(limit: 1000) {
       nodes {

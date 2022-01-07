@@ -45,28 +45,34 @@ imports
   }
 }
 
-// .contentFilter {
-//   padding: 40px 0;
-//   border-bottom: 1px solid $separator;
+.contentFilter {
+  padding: 40px 0;
+  border-bottom: 1px solid $separator;
 
-//   .listFilter {
-//     @include container(580px);
-//     display: flex;
-//     list-style: none;
-//     padding: 0;
+  .listFilter {
+    @include container(580px);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
 
-//     li + li { margin-left: 20px; }
+    li + li {
+      margin-left: 20px;
+    }
 
-//     &Item {
-//       padding: 8px 16px;
-//       border-radius: 20px;
-//       background-color: white;
-//       box-shadow: 0 2px 10px #0000001a;
+    &Item {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: white;
+      box-shadow: 0 2px 10px #0000001a;
+      cursor: pointer;
 
-//       a { @extend %resetAnchors; }
-//     }
-//   }
-// }
+      a {
+        @extend %resetAnchors;
+      }
+    }
+  }
+}
 
 .contentIndex {
   @include container(1400px);
