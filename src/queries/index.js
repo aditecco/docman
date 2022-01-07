@@ -2,8 +2,6 @@
 queries
 --------------------------------- */
 
-const { F_SITE_METADATA } = require("./index")
-
 exports.ALL_SANITY_POST = `
 {
   allSanityPost(limit: 1000) {
@@ -34,13 +32,5 @@ fragment SiteMetadata on Site {
     description
     author
   }
-}
-`
-
-exports.SITE_METADATA = `
-${F_SITE_METADATA}
-
-site {
-  ...SiteMetadata
 }
 `
