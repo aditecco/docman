@@ -14,6 +14,7 @@ import rehypePrism from "@mapbox/rehype-prism"
 const ALLOWED_CLASSES = [
   "className",
   "language-js",
+  "language-javascript",
   "language-css",
   "language-md",
   "language-scss",
