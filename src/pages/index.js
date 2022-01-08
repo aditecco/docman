@@ -33,7 +33,7 @@ export default function HomePage({ data }) {
           <ul className="listFilter">
             {catFilter && (
               <li className={"listFilterItem"} onClick={() => setCatFilter("")}>
-                Reset filter
+                &times; Reset filter
               </li>
             )}
 
