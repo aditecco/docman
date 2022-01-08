@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Alessandro Di Tecco",
   "dependencies": {
+    "@mapbox/rehype-prism": "^0.8.0",
     "classnames": "^2.3.1",
     "flat-ui-colors-sass": "^1.0.0",
     "gatsby": "^3.0.0",
