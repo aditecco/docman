@@ -17,7 +17,7 @@ export default function Sidebar({ toc } /*: IOwnProps*/) /*: ReactElement */ {
   }, [])
 
   function toggleCollapsed() {
-    setCollapsed(c => {
+    setCollapsed((c) => {
       if (!c) {
         body && body.current.setAttribute("style", "margin-left: 0")
         return true
@@ -35,7 +35,7 @@ export default function Sidebar({ toc } /*: IOwnProps*/) /*: ReactElement */ {
           id="DocSidebarSearchInput"
           type="text"
           placeholder="Search topics…"
-          onChange={e => console.log(e.target.value)}
+          onChange={(e) => console.log(e.target.value)}
         />
 
         <button className="DocSidebarSearchSubmit">
@@ -50,7 +50,7 @@ export default function Sidebar({ toc } /*: IOwnProps*/) /*: ReactElement */ {
       <nav
         className="DocSidebarNav"
         dangerouslySetInnerHTML={{ __html: toc }}
-      ></nav>
+      />
 
       <footer className="DocSidebarFooter">
         <small className="DocSidebarFooterMetaInfo">
