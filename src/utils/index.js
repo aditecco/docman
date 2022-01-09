@@ -22,7 +22,7 @@ export async function parseWithRemark(source) {
     .use(remarkToc, {
       heading: TOC_KEY,
       maxDepth: 4,
-      prefix: "dm-generated-toc",
+      tight: true,
     })
     .use(remarkRehype)
     .use(rehypeSanitize, {
