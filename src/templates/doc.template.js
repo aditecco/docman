@@ -12,6 +12,8 @@ import { parseWithRemark } from "../utils"
 export default function DocTemplate(props) {
   const [pageBody, setPageBody] = useState("")
   const { pageContext: content } = props
+  // TOOO refine & find alternative to Lookbehind
+  const toc = pageBody.match(/^<h3>TOC<\/h3>\n<ul>(\n.+)*(?<=<\/ul>)/)
 
   useEffect(() => {
     // TODO move all this processing to gatsby-node
@@ -21,7 +23,7 @@ export default function DocTemplate(props) {
   return (
     <Layout {...props}>
       <div className="DocContent">
-        {/*<Sidebar toc={post.tableOfContents} />*/}
+        <Sidebar toc={toc} />
 
         <main className="DocBody">
           <h2 className="DocHeading">{content.title}</h2>
