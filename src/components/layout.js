@@ -1,4 +1,3 @@
-
 /* ---------------------------------
 Base layout
 --------------------------------- */
@@ -8,22 +7,20 @@ import PropTypes from "prop-types"
 
 import Header from "./header"
 import Footer from "./footer"
-import "../styles/base.scss"
+import "../styles/layout.scss"
 
-const Base = ({ children }) => (
+const Layout = ({ children }) => (
   <>
     <Header />
 
-    <div className='mainContainer'>
-      {children}
-    </div>
+    <div className="mainContainer">{children}</div>
 
     {/* <Footer /> */}
   </>
 )
 
-Base.propTypes = {
+Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Base
+export default Layout

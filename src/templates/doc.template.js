@@ -4,7 +4,7 @@ Doc template
 
 import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
-import Base from "../components/base"
+import Layout from "../components/layout"
 import Sidebar from "../components/sidebar"
 import "../styles/doc.template.scss"
 import { parseWithRemark } from "../utils"
@@ -14,11 +14,12 @@ export default function DocTemplate(props) {
   const { pageContext: content } = props
 
   useEffect(() => {
+    // TODO move all this processing to gatsby-node
     parseWithRemark(content.body).then(({ value }) => setPageBody(value))
   }, [])
 
   return (
-    <Base {...props}>
+    <Layout {...props}>
       <div className="DocContent">
         {/*<Sidebar toc={post.tableOfContents} />*/}
 
@@ -37,6 +38,6 @@ export default function DocTemplate(props) {
           )}
         </main>
       </div>
-    </Base>
+    </Layout>
   )
 }
