@@ -19,7 +19,11 @@ export async function parseWithRemark(source) {
 
   return await unified()
     .use(remarkParse)
-    .use(remarkToc, { heading: TOC_KEY })
+    .use(remarkToc, {
+      heading: TOC_KEY,
+      maxDepth: 4,
+      prefix: "dm-generated-toc",
+    })
     .use(remarkRehype)
     .use(rehypeSanitize, {
       // https://github.com/rehypejs/rehype-sanitize#example-syntax-highlighting
