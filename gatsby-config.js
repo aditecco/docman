@@ -16,15 +16,10 @@ module.exports = {
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
-      options:
-        // options: {
-        //   name: `images`,
-        //   path: `${__dirname}/src/images`,
-        // },
-        {
-          name: "markdown-pages",
-          path: `${__dirname}/content/docs`,
-        },
+      options: {
+        name: "markdown-pages",
+        path: `${__dirname}/content/docs`,
+      },
     },
     {
       resolve: `gatsby-source-sanity`,
