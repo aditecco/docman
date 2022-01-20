@@ -12,8 +12,11 @@ import { parseWithRemark } from "../utils"
 export default function DocTemplate(props) {
   const [pageBody, setPageBody] = useState("")
   const { pageContext: content } = props
-  // TOOO refine & find alternative to Lookbehind
-  const toc = pageBody.match(/^<h3>TOC<\/h3>\n<ul>(\n.+)*(?<=<\/ul>)/)
+  // TOOO refine & find alternative to dotall
+  // please enable TS & optional chaining...
+  const tocMatch = pageBody.match(/^(.+?)<\/ul>/s)
+  const toc =
+    tocMatch && tocMatch.length ? tocMatch[0].replace("<h3>TOC</h3>", "") : []
 
   useEffect(() => {
     // TODO move all this processing to gatsby-node
