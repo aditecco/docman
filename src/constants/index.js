@@ -64,3 +64,6 @@ export const ALLOWED_TOKENS = [
 ]
 
 export const TOC_KEY = "TOC"
+export const TOC_MATCHER = /^(.+?)<\/ul>/s
+export const ERROR_PARSING_CONTENT =
+  "There was an error in parsing the page's content."
