@@ -402,11 +402,13 @@ generated content
     font-size: 1.25rem;
   }
 
-  :not(pre) > code[class*="language-"] {
+  *:not(pre) > code,
+  *:not(pre) > code[class*="language-"] {
     border-bottom: 1px solid rgba($flat-blue-4, 0.2);
     border-radius: 0;
     background: #f1f1f1;
     color: $flat-blue-4;
+    font-size: 14px;
   }
 
   blockquote {
