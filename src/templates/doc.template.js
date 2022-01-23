@@ -19,7 +19,7 @@ export default function DocTemplate(props) {
     // TODO move all this processing to gatsby-node
     parseWithRemark(content.body).then(
       ({ value: html }) => {
-        // TOOO refine & find alternative to dotall
+        // TODO refine & find alternative to dotall
         // please enable TS & optional chaining...
         const tocMatch = html.match(TOC_MATCHER)
         const toc =
