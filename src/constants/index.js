@@ -17,6 +17,8 @@ export const ALLOWED_CLASSES = [
   "language-php",
   "language-pug",
   "language-text",
+  "language-html",
+  "language-typescript",
 ]
 
 export const ALLOWED_TOKENS = [
